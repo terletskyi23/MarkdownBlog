@@ -3,7 +3,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     create_table(:users) do |t|
       ## Database authenticatable
       #VST
-      t.string :name, null: false, default: ""
+      t.string :name, default: ""
 
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -36,6 +36,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    #VST
+    add_index :users, :name,                unique: true  
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
