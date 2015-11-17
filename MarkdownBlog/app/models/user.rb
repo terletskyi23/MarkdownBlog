@@ -1,5 +1,10 @@
 class User < ActiveRecord::Base
-  #VST
+  #VST: one to many Post 
+  has_many :posts 
+  has_many :comments 
+
+
+  #VST: Autentication
   def login=(login)
     @login = login
   end
