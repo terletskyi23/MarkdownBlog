@@ -11,49 +11,25 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-  <div class="row">
-     <div class="large-10 columns">
-       <% if user_signed_in? %>
-        <span>HELLO, <%= current_user.email %></span>
-          <%= link_to 'LOG OUT', destroy_user_session_path, :method => :delete %>
+
+<div class="head row">
+  <div class="head-title small-4 columns"> <%= link_to controller.controller_name.titleize, url_for(params) %>
+  </div>
+  <div class="logo small-3 columns">
+    <%= link_to root_path do %>
+      <%= image_tag("markdown2.png", size: "112x100", :alt => "logo") %>
+      <h3>Blog</h3>
+    <% end %>
+  </div>
+  <div class="head-authentication small-5 columns">
+    <% if user_signed_in? %>
+        <span>Hi, <%= link_to current_user.login, new_user_session_path %><b> |</b> </span>
+          <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>
        <% else %>
-        <%= link_to 'LOG IN', new_user_session_path %> | <%= link_to 'SIGHN UP', new_user_registration_path %>
-       <% end %>
-     </div>
-
-    <div class="small-12 columns">
-      <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="#">MarkdownBlog</a></h1>
-        </li>
-         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-      </ul>
-
-      <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="right">
-          <li class="active has-dropdown">
-            <% if user_signed_in? %>
-              <a href="#">HELLO, <%= current_user.login %></a>
-              <ul class="dropdown">
-                <li><a href="#">Profile</a></li>
-                <li><%= link_to 'LOG OUT', destroy_user_session_path, :method => :delete %></li>
-              </ul>
-            <% else %>  
-              <a href="#">Authentication</a>
-              <ul class="dropdown">
-                <li><%= link_to 'LOG IN', new_user_session_path %></li>
-                <li><%= link_to 'SIGHN UP', new_user_registration_path %></li>
-              </ul>
-            
-            <% end %>
-          </li>
-        </ul>
-      </section>
-    </nav>
-    </div>
+        <%= link_to 'Log In', new_user_session_path %><span> <b>|</b> </span><%= link_to 'Sighn Up', new_user_registration_path %>
+    <% end %>
+  </div>
+</div>  
   
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
