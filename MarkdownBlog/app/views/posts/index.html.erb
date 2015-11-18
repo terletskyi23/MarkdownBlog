@@ -25,7 +25,7 @@
 	  				<% end %>
 
 	  				
-	  				<%= image_tag("icons/speechbubble10.png", size: "30x30", :title => "Comments", :alt => "Comments") %>
+	  				<%= image_tag("icons/speechbubble10.png", size: "30x30", :title => "Comments", :alt => "Comments", :class => 'comments-block', :id => "cb "+post.id.to_s) %>
 	  				
 	  				
 	  				<%if post.created_at.to_date == Date.today %>
@@ -38,6 +38,8 @@
 	  				</span> 
 	  			</div>
 			</div> 
+
+			<div class="comments-wrapper" id = "cw <%=  post.id%>">
 			<div class="comments-head"> 
 				
 				<%= image_tag("icons/add186.png", size: "30x30", :title => "+ New Comment", :alt => "Comment +") %> <span>Add New Comment </span>
@@ -57,7 +59,8 @@
 	  				<span class="comment-time"><%= comment.updated_at %></span> 
 	  			</div>
 	  		</div>	
-			<% end %> 
+			<% end %>
+			</div> 
 			
 		<% end %>
 		</div>

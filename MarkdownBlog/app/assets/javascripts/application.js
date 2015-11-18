@@ -17,3 +17,12 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+//VST
+$(document).ready (function(){
+	$('.comments-block').click(function() {
+  		var strNameId = 'cw ' + $(this).attr('id').split(' ').pop();
+  		$(document.getElementById(strNameId)).slideToggle('slow');
+	});
+
+});

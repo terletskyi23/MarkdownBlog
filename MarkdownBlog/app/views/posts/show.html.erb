@@ -1,15 +1,19 @@
-<div class="small-12 columns">
-
+<div class="row">
+    <div class="small-12 columns">
     <br>
 	<h1>Posts#Show:</h1>
-		  <div > 
-		    Title -> <%= @post.title %> <br>
-		    Text -> <%= @post.text %> 
+		  <div class="post"> 
+		    <h2 class="post-title"><%= @post.title %></h2> 
+		    <div class="long-text">
+	  				<p class="post-text">
+	  					<%= @post.text %>
+	  				</p> 
+  				</div>
 		  </div> 
+
 		  <% if current_user.id == @post.user_id  %>
 			  <div > 
-			    <%= link_to "Edit", edit_post_path(@post) %>
-			    <%= link_to "Delete", @post, method: :delete,
+			    <%= link_to "Edit", edit_post_path(@post) %> | <%= link_to "Delete", @post, method: :delete,
                                   data: { confirm: "Are you sure?" } %>
 
 			  </div> 
@@ -28,5 +32,5 @@
 	  			</div>
 	  		</div>	
 			<% end %> 
-		  
+	</div>	  
 </div>
