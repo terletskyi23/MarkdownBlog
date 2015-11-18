@@ -20,6 +20,13 @@ $basic-color: #333;
 $blue-color: #008CBA;
 $main-opacity: .83;
 
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+
 .head {
 	border-bottom: 3px solid $blue-color;
 	padding-bottom: 15px;
@@ -63,3 +70,74 @@ $main-opacity: .83;
 			font-size: 1.6em;
 		}	
 	}
+
+.post {
+	background:#eef;
+	padding: 20px;
+	border-left: 3px solid #bbb;
+}
+
+.comment {
+	background:#eef;
+	padding: 20px;
+	margin: 5px;
+	margin-left: 45px;
+	margin-bottom: 25px;
+	border-left: 2px solid #bbb;
+}
+
+.notice, .alert {
+	border-left: 2px solid $basic-color;
+	padding-left: 8px;
+	color:$blue-color;	
+	font-size: 1.2em;
+}
+
+/*------------------------- effects ------------------------*/
+
+.block-shadow-2 {
+  position: relative;
+}
+.block-shadow-2:before {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  box-shadow: 0 15px 10px #777;
+  transform: rotate(-3deg);
+}
+
+.footer-message div{
+	position:fixed;
+	bottom:0;
+
+  -webkit-animation: seconds 1.0s forwards;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-delay: 5s;
+  animation: seconds 1.0s forwards;
+  animation-iteration-count: 1;
+  animation-delay: 5s;
+}
+@-webkit-keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: -9999px; 
+  }
+}
+@keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: -9999px; 
+  }
+}

@@ -30,11 +30,18 @@
     <% end %>
   </div>
 </div>  
-  
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 
-    <%= yield %>
+  <%= yield %>
+
+<div class="footer">
+  <div class="footer-message row">  
+    <div class="small-4 small-offset-6 columns">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>  
+  </div>
+</div>
+    
 
   </body>
 </html>

@@ -1,2 +1,38 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<div class="row">
+    <div class="small-12 columns">
+
+    	<br>
+		<h1>Posts:</h1>
+		<% @posts.each do |post| %> 
+
+			<div class="post"> 
+
+  				<p class="post-title"><%= post.title %></p> 
+
+  				<p class="post-text"><%= post.text %></p> 
+  				<hr />
+	  			<div class="post-info">
+	  				<span class="post-creater"><%= User.find_by_id(post.user_id).login %>
+	  				</span> 
+	  				<span class="post-time"><%= post.created_at %></span> 
+	  				<span class="post-time"><%= post.updated_at %></span> 
+	  			</div>
+			</div> 
+			<% post.comments.each do |comment| %> 
+			<div class="comment block-shadow-2">
+   				<p class="comment-text">
+   					<%= comment.body %>
+   				</p> 
+   				<hr />
+   				<div class="comment-info">
+	  				<span class="comment-creater"><%= User.find_by_id(comment.user_id).login %>
+	  				</span> 
+	  				<span class="comment-time"><%= comment.created_at %></span> 
+	  				<span class="comment-time"><%= comment.updated_at %></span> 
+	  			</div>
+	  		</div>	
+			<% end %> 
+			
+		<% end %>
+	</div>
+</div>		
