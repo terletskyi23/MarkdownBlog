@@ -18,6 +18,7 @@
 
 $basic-color: #333;
 $blue-color: #008CBA;
+$light-blue-color: #94D4E9;
 $main-opacity: .83;
 
 * {
@@ -71,20 +72,59 @@ html, body {
 		}	
 	}
 
+.title-link {
+	color: $basic-color;
+	font-size: 2em;
+	margin: 5px;
+	padding-bottom: 30px;
+}
+
+.content {
+	margin-top: 20px;	
+	padding: 5px;
+	background: #eee;
+	border-top: 2px solid #aaa	;
+}
+
 .post {
-	background:#eef;
+	background: $blue-color;
+	opacity: .8;
 	padding: 20px;
-	border-left: 3px solid #bbb;
+	border-left: 3px solid #333	;
+	color: #fff;
+}
+
+.post-info {
+	a {
+		color: $basic-color;
+	}
+	span {
+		float: right;
+	}
+
+}
+
+.comments-head {
+	background: #b7e0ba;
+	padding: 10px;
+	margin: 5px 0 5px 0;
+	span:last-child {
+		float: right;
+	}
 }
 
 .comment {
-	background:#eef;
+	background: #b7e0ba;
 	padding: 20px;
-	margin: 5px;
-	margin-left: 45px;
-	margin-bottom: 25px;
-	border-left: 2px solid #bbb;
+	margin: 5px 5px 13px 30px ;
+	border-left: 1px solid #bbb;
+	box-shadow: -2px 0px 2px 1px #bbb;
+
+	hr{
+		border-color:#F8F6F6;
+	}
 }
+
 
 .notice, .alert {
 	border-left: 2px solid $basic-color;

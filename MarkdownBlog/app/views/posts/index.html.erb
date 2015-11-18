@@ -2,22 +2,48 @@
     <div class="small-12 columns">
 
     	<br>
-		<h1>Posts:</h1>
+		<%= link_to "posts/new", class: "title-link" do%>
+			<%= image_tag("icons/add186.png", size: "30x30", :title => "+ New Post", :alt => "Post +") %> <span>Add New Post </span>
+		<% end %>
+		<div class="content">
 		<% @posts.each do |post| %> 
 
 			<div class="post"> 
 
-  				<p class="post-title"><%= post.title %></p> 
+  				<h2 class="post-title"><%= post.title %></h2> 
 
-  				<p class="post-text"><%= post.text %></p> 
+  				<div class="long-text">
+	  				<p class="post-text">
+	  					<%= post.text %>
+	  				</p> 
+  				</div>
+
   				<hr />
 	  			<div class="post-info">
-	  				<span class="post-creater"><%= User.find_by_id(post.user_id).login %>
+	  				<%=link_to  post  do%>
+	  					<%= image_tag("icons/view24.png", size: "30x30", :title => "See Post", :alt => "View Post") %>
+	  				<% end %>
+
+	  				
+	  				<%= image_tag("icons/speechbubble10.png", size: "30x30", :title => "Comments", :alt => "Comments") %>
+	  				
+	  				
+	  				<%if post.created_at.to_date == Date.today %>
+	  					<span class="post-time"> today <%= post.created_at.strftime(" %H:%M") %></span> 
+	  				<% else %>
+	  					<span class="post-time"> <%= post.created_at.strftime(" %d %b. %Y") %></span> 
+	  				<% end %>
+
+	  				<span class="post-creater">by: <%= User.find_by_id(post.user_id).login %> | &nbsp;
 	  				</span> 
-	  				<span class="post-time"><%= post.created_at %></span> 
-	  				<span class="post-time"><%= post.updated_at %></span> 
 	  			</div>
 			</div> 
+			<div class="comments-head"> 
+				
+				<%= image_tag("icons/add186.png", size: "30x30", :title => "+ New Comment", :alt => "Comment +") %> <span>Add New Comment </span>
+				
+				<span>| Count of comments - <%=post.comments.count %></span>
+			</div>
 			<% post.comments.each do |comment| %> 
 			<div class="comment block-shadow-2">
    				<p class="comment-text">
@@ -34,5 +60,6 @@
 			<% end %> 
 			
 		<% end %>
+		</div>
 	</div>
 </div>		

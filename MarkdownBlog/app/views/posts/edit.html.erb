@@ -1,0 +1,12 @@
+<div class="small-12 columns">
+
+    <br>
+	<h1>Posts#Edit:</h1>
+		  <div > 
+		    <%= form_for(@post) do |f| %>
+	     		Title -> <%= f.text_field :title %><br>
+	      		Text -> <%= f.text_area :text %>
+	      		<%= f.submit "Update", :class => "btn" %>
+	        <% end %> 
+		  </div> 
+</div>

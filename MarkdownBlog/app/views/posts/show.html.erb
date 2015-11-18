@@ -1,0 +1,32 @@
+<div class="small-12 columns">
+
+    <br>
+	<h1>Posts#Show:</h1>
+		  <div > 
+		    Title -> <%= @post.title %> <br>
+		    Text -> <%= @post.text %> 
+		  </div> 
+		  <% if current_user.id == @post.user_id  %>
+			  <div > 
+			    <%= link_to "Edit", edit_post_path(@post) %>
+			    <%= link_to "Delete", @post, method: :delete,
+                                  data: { confirm: "Are you sure?" } %>
+
+			  </div> 
+		  <% end %>
+		  <% @post.comments.each do |comment| %> 
+			<div class="comment block-shadow-2">
+   				<p class="comment-text">
+   					<%= comment.body %>
+   				</p> 
+   				<hr />
+   				<div class="comment-info">
+	  				<span class="comment-creater"><%= User.find_by_id(comment.user_id).login %>
+	  				</span> 
+	  				<span class="comment-time"><%= comment.created_at %></span> 
+	  				<span class="comment-time"><%= comment.updated_at %></span> 
+	  			</div>
+	  		</div>	
+			<% end %> 
+		  
+</div>
