@@ -1,2 +1,19 @@
-<h1>Persons#profile</h1>
-<p>Find me in app/views/persons/profile.html.erb</p>
+<div class="row">
+    <div class="small-12 columns">
+		<h1><%= current_user.login %> Profile</h1>
+		<span>Name: </span> <%= current_user.name %> 
+		<br>
+		<span>Email: </span> <%= current_user.email %> 
+		<br>
+		<span>Joined on </span> <%= current_user.created_at.strftime(" %d %b. %Y - %H:%M") %> 
+		<br><br>
+		<span>Followers:</span><br>
+		<span>Following:</span><br>
+		<span>Post posted:</span> <%= current_user.posts.count %> 
+		<%=link_to  'see them', :controller => "posts", :action => "index", :sw => true %>
+		<br>
+		<span>Comentars:</span> <%= current_user.comments.count %> 
+		<br><br>
+		<%= link_to "Edit", edit_user_registration_path %>
+	</div>
+</div>

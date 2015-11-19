@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 #VST
 gem 'devise'
 gem 'foundation-rails'
+gem 'redcarpet'
+gem 'socialization' #only for likes
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'

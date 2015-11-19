@@ -1,36 +1,63 @@
 <div class="row">
+<br>
+<% if current_user.id == @post.user_id  %>
+	   	<span class="swich">
+	    	<%= link_to "Edit", edit_post_path(@post) %> | <%= link_to "Delete", @post, method: :delete, data: { confirm: "Are you sure?" } %>
+        </span>
+	<% end %>
     <div class="small-12 columns">
-    <br>
-	<h1>Posts#Show:</h1>
-		  <div class="post"> 
+		<div class="post"> 
 		    <h2 class="post-title"><%= @post.title %></h2> 
 		    <div class="long-text">
-	  				<p class="post-text">
-	  					<%= @post.text %>
-	  				</p> 
-  				</div>
+	  			<p class="post-text">
+	  				<%= markdown @post.text %>
+	  			</p> 
+  			</div>
+
+  			<div class="post-info">
+		  		<%=link_to  @post  do%>
+		  			<%= image_tag("icons/view24.png", size: "30x30", :title => "See Post", :alt => "View Post") %>
+		  		<% end %>
+		  				
+		  		<%= image_tag("icons/speechbubble10.png", size: "30x30", :title => "Comments", :alt => "Comments", :class => 'comments-block', :id => "cb "+ @post.id.to_s) %>
+
+		  		<%= link_to  likes_path(@post) do%> 
+		  			<% if @post.liked_by?(current_user) %>
+		  				<%= image_tag("icons/heart267.png", size: "25x25", :title => "#{@post.likers(User).count} people like it", :alt => "Toggle Like", :class => "add-opacity") %>
+		  			<% else %>
+		  				<%= image_tag("icons/heart267.png", size: "25x25", :title => "#{@post.likers(User).count} people like it", :alt => "Toggle Like") %>
+		  			<% end %>
+		  		<% end %>
+		  				
+		  		<%if @post.created_at.to_date == Date.today %>
+		  			<span class="post-time"> today <%= @post.created_at.strftime(" %H:%M") %></span> 
+		  		<% else %>
+		  			<span class="post-time"> <%= @post.created_at.strftime(" %d %b. %Y") %></span> 
+		  		<% end %>
+
+		  		<span class="post-creater">by: <%= User.find_by_id(@post.user_id).login %> | &nbsp;
+		  		</span> 
+		  	</div>
+		</div> 
+		<div class="comments-wrapper" id = "cw <%=  @post.id%>">
+			<div class="comments-head"> 					
+				<%= image_tag("icons/add186.png", size: "30x30", :title => "+ New Comment", :alt => "Comment +") %> <span>Add New Comment </span>	
+				<span>| Count of comments - <%=@post.comments.count %></span>
+			</div>
+			<% @post.comments.each do |comment| %> 
+				<div class="comment block-shadow-2">
+	   				<p class="comment-text">
+	   					<%= comment.body %>
+	   				</p> 
+	   				<hr />
+	   				<div class="comment-info">
+		  				<span class="comment-creater"><%= User.find_by_id(comment.user_id).login %>
+		  				</span> 
+		  				<span class="comment-time"><%= comment.created_at %></span> 
+		  				<span class="comment-time"><%= comment.updated_at %></span> 
+		  			</div>
+		  		</div>	
+			<% end %>						
 		  </div> 
-
-		  <% if current_user.id == @post.user_id  %>
-			  <div > 
-			    <%= link_to "Edit", edit_post_path(@post) %> | <%= link_to "Delete", @post, method: :delete,
-                                  data: { confirm: "Are you sure?" } %>
-
-			  </div> 
-		  <% end %>
-		  <% @post.comments.each do |comment| %> 
-			<div class="comment block-shadow-2">
-   				<p class="comment-text">
-   					<%= comment.body %>
-   				</p> 
-   				<hr />
-   				<div class="comment-info">
-	  				<span class="comment-creater"><%= User.find_by_id(comment.user_id).login %>
-	  				</span> 
-	  				<span class="comment-time"><%= comment.created_at %></span> 
-	  				<span class="comment-time"><%= comment.updated_at %></span> 
-	  			</div>
-	  		</div>	
-			<% end %> 
 	</div>	  
 </div>

@@ -1,8 +1,21 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!
 
+  def post_like
+    @user = current_user # before_action :authenticate_user, only: [:likes]
+    @post = Post.find(params[:id])
+    @user.toggle_like!(@post)
+
+    if @user.likes?(@post) 
+      redirect_to :back, notice: "You liked this post!"
+    else
+      redirect_to :back, notice: "You unliked this post!"
+    end
+  end
+
   def index
   	@posts = Post.all
+    Rails.logger.debug params.inspect
   end
 
   def new 
@@ -15,6 +28,7 @@ class PostsController < ApplicationController
 
   def create 
     @post = Post.new(post_params.merge(user_id: current_user.id)) 
+    
     if @post.save 
       redirect_to '/posts' 
     else 
