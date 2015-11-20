@@ -1,0 +1,87 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install', 'markdown' ]
+2 info using npm@1.3.10
+3 info using node@v0.10.25
+4 verbose cache add [ 'markdown', null ]
+5 verbose cache add name=undefined spec="markdown" args=["markdown",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'markdown',
+6 verbose parsed url   path: 'markdown',
+6 verbose parsed url   href: 'markdown' }
+7 silly lockFile 90320b91-markdown markdown
+8 verbose lock markdown /home/vst/.npm/90320b91-markdown.lock
+9 silly lockFile 90320b91-markdown markdown
+10 silly lockFile 90320b91-markdown markdown
+11 verbose addNamed [ 'markdown', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile b808a1dc-markdown markdown@
+14 verbose lock markdown@ /home/vst/.npm/b808a1dc-markdown.lock
+15 silly addNameRange { name: 'markdown', range: '*', hasData: false }
+16 verbose url raw markdown
+17 verbose url resolving [ 'https://registry.npmjs.org/', './markdown' ]
+18 verbose url resolved https://registry.npmjs.org/markdown
+19 info trying registry request attempt 1 at 21:30:50
+20 verbose etag "42U034SV3707OQMUMKSY0H7VN"
+21 http GET https://registry.npmjs.org/markdown
+22 http 304 https://registry.npmjs.org/markdown
+23 silly registry.get cb [ 304,
+23 silly registry.get   { date: 'Fri, 20 Nov 2015 19:30:51 GMT',
+23 silly registry.get     via: '1.1 varnish',
+23 silly registry.get     'cache-control': 'max-age=60',
+23 silly registry.get     etag: '"42U034SV3707OQMUMKSY0H7VN"',
+23 silly registry.get     age: '57',
+23 silly registry.get     connection: 'keep-alive',
+23 silly registry.get     'x-served-by': 'cache-fra1245-FRA',
+23 silly registry.get     'x-cache': 'HIT',
+23 silly registry.get     'x-cache-hits': '1',
+23 silly registry.get     'x-timer': 'S1448047851.112204,VS0,VE0',
+23 silly registry.get     vary: 'Accept' } ]
+24 verbose etag markdown from cache
+25 silly addNameRange number 2 { name: 'markdown', range: '*', hasData: true }
+26 silly addNameRange versions [ 'markdown',
+26 silly addNameRange   [ '0.1.0',
+26 silly addNameRange     '0.1.1',
+26 silly addNameRange     '0.1.2',
+26 silly addNameRange     '0.2.1',
+26 silly addNameRange     '0.3.0',
+26 silly addNameRange     '0.3.1',
+26 silly addNameRange     '0.4.0',
+26 silly addNameRange     '0.5.0' ] ]
+27 verbose addNamed [ 'markdown', '0.5.0' ]
+28 verbose addNamed [ '0.5.0', '0.5.0' ]
+29 silly lockFile a99f05a7-markdown-0-5-0 markdown@0.5.0
+30 verbose lock markdown@0.5.0 /home/vst/.npm/a99f05a7-markdown-0-5-0.lock
+31 silly lockFile ce414ae0--org-markdown-markdown-0-5-0-tgz https://registry.npmjs.org/markdown/-/markdown-0.5.0.tgz
+32 verbose lock https://registry.npmjs.org/markdown/-/markdown-0.5.0.tgz /home/vst/.npm/ce414ae0--org-markdown-markdown-0-5-0-tgz.lock
+33 verbose addRemoteTarball [ 'https://registry.npmjs.org/markdown/-/markdown-0.5.0.tgz',
+33 verbose addRemoteTarball   '28205b565a8ae7592de207463d6637dc182722b2' ]
+34 silly lockFile ce414ae0--org-markdown-markdown-0-5-0-tgz https://registry.npmjs.org/markdown/-/markdown-0.5.0.tgz
+35 silly lockFile ce414ae0--org-markdown-markdown-0-5-0-tgz https://registry.npmjs.org/markdown/-/markdown-0.5.0.tgz
+36 silly lockFile a99f05a7-markdown-0-5-0 markdown@0.5.0
+37 silly lockFile a99f05a7-markdown-0-5-0 markdown@0.5.0
+38 silly lockFile b808a1dc-markdown markdown@
+39 silly lockFile b808a1dc-markdown markdown@
+40 error Error: EACCES, mkdir '/home/vst/tmp/npm-15829-3zFUHqno'
+40 error  { [Error: EACCES, mkdir '/home/vst/tmp/npm-15829-3zFUHqno']
+40 error   errno: 3,
+40 error   code: 'EACCES',
+40 error   path: '/home/vst/tmp/npm-15829-3zFUHqno' }
+41 error Please try running this command again as root/Administrator.
+42 error System Linux 3.16.0-49-generic
+43 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "markdown"
+44 error cwd /home/vst/RoRProject/HomeTasks/4/MarkdownBlog
+45 error node -v v0.10.25
+46 error npm -v 1.3.10
+47 error path /home/vst/tmp/npm-15829-3zFUHqno
+48 error code EACCES
+49 error errno 3
+50 error stack Error: EACCES, mkdir '/home/vst/tmp/npm-15829-3zFUHqno'
+51 verbose exit [ 3, true ]

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require markdown
 //= require turbolinks
 //= require_tree .
 
@@ -25,4 +26,22 @@ $(document).ready (function(){
   		$(document.getElementById(strNameId)).slideToggle('slow');
 	});
 
+
+	//if ()
+		$("#convert_post_title").text($('#post_title').val());
+		$("#convert_post_text").append(markdown.toHTML($('#post_text').val(), 'Maruku'));
+	//}
+
+	$(function(){
+  		$('#post_title').keyup(function(){
+     		$('#convert_post_title').text($(this).val());
+  		});
+	});
+	$(function(){
+  		$('#post_text').keyup(function(){
+  			$("#convert_post_text").empty();
+			$("#convert_post_text").append(markdown.toHTML($('#post_text').val(), 'Maruku'));
+  		});
+	});
 });
+

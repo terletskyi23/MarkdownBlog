@@ -13,9 +13,20 @@ class PostsController < ApplicationController
     end
   end
 
+#!!!!
+  def post_comment(post)
+    @user = current_user # before_action :authenticate_user, only: [:likes]
+    @post = post
+    
+    #if @user.likes?(@post) 
+    #  redirect_to :back, notice: "You liked this post!"
+    #else
+    #  redirect_to :back, notice: "You unliked this post!"
+    #end
+  end
+
   def index
   	@posts = Post.all
-    Rails.logger.debug params.inspect
   end
 
   def new 

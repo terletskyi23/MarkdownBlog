@@ -4,6 +4,8 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'redcarpet'
 gem 'socialization' #only for likes
+gem 'markdownjs-rails'
+gem "bower-rails", "~> 0.10.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
