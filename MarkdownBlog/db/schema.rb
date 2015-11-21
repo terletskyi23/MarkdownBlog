@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119184614) do
+ActiveRecord::Schema.define(version: 20151121155149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20151119184614) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "comments", ["user_id", "post_id"], name: "index_comments_on_user_id_and_post_id", unique: true, using: :btree
+  add_index "comments", ["user_id", "post_id"], name: "index_comments_on_user_id_and_post_id", using: :btree
 
   create_table "follows", force: :cascade do |t|
     t.string   "follower_type"
@@ -58,6 +58,16 @@ ActiveRecord::Schema.define(version: 20151119184614) do
 
   add_index "mentions", ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
   add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
+
+  create_table "myfollows", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "following_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "myfollows", ["follower_id"], name: "index_myfollows_on_follower_id", using: :btree
+  add_index "myfollows", ["following_id"], name: "index_myfollows_on_following_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",      default: ""

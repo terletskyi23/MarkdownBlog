@@ -11,7 +11,7 @@
 				<%=link_to  'own', :sw => true %>
 			</span>
 		<div class="content">
-		<% @posts.each do |post| %> 
+		<% @posts.reverse_each do |post| %> 
 			<% unless (params[:sw].to_s == 'true') && (post.user_id != current_user.id) %>
 				<div class="post"> 
 
@@ -54,32 +54,39 @@
 				<div class="comments-wrapper" id = "cw <%=  post.id%>">
 				<div class="comments-head"> 
 					
-					<%= image_tag("icons/add186.png", size: "30x30", :title => "+ New Comment", :alt => "Comment +") %> <span>Add New Comment </span>
+					<%= image_tag("icons/add186.png", size: "30x30", :title => "+ New Comment", :alt => "Comment +", :class => 'show-comments-form', :id => "cbf "+post.id.to_s) %> 
 					
-					<span>| Count of comments - <%=post.comments.count %></span>
-				</div>
-
-				<div class='comment-form'>
-					<%= form_tag( controller: "comments" , action: 'post_comment' ) do %>	<%= hidden_field_tag(:post_id, post.id) %>
-  						<%= text_area_tag(:body) %>
-  						<%= submit_tag("Add") %>
-					<% end %>
-
-
+					<span>| Count of comments - <%=post.comments.count %></span><span>Add New Comment </span>
+					<br>
+					<div class='comment-form' id = "cf <%=  post.id%>">
+						<%= form_tag( controller: 'comments' , action: 'create' ) do %>	<%= hidden_field_tag(:post_id, post.id) %>
+	  						<%= text_area_tag(:body) %>
+	  						<%= submit_tag('Add') %>
+						<% end %>
+					</div>
 				</div>
 
 				<% post.comments.each do |comment| %> 
 				<div class="comment block-shadow-2">
-	   				<p class="comment-text">
-	   					<%= link_to "Delete", comment, controller: "comments" , action: 'remove_comment', method: :delete, data: { confirm: "Are you sure?" } %>
+	   				<p class="comment-text ">
+	   					<% if comment.user_id == current_user.id %>
+		   					<span>	
+		   						| <%= link_to "Delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
+		   						<br>
+		   					</span>
+	   					<% end %>
 	   					<%= comment.body %>
 	   				</p> 
 	   				<hr />
 	   				<div class="comment-info">
-		  				<span class="comment-creater"><%= User.find_by_id(comment.user_id).login %>
+		  				<span class="comment-creater"><%= User.find_by_id(comment.user_id).login %>:
 		  				</span> 
-		  				<span class="comment-time"><%= comment.created_at %></span> 
-		  				<span class="comment-time"><%= comment.updated_at %></span> 
+
+		  				<%if comment.created_at.to_date == Date.today %>
+		  					<span class="comment-time"> today <%= comment.created_at.strftime(" %H:%M") %></span> 
+		  				<% else %>
+		  					<span class="comment-time"> <%= comment.created_at.strftime(" %d %b. %Y") %></span> 
+		  				<% end %>
 		  			</div>
 		  		</div>	
 				<% end %>
@@ -90,3 +97,17 @@
 
 	</div>
 </div>		
+
+<script type="text/javascript">
+	$(document).ready (function(){
+		$('.comments-block').click(function() {
+	  		var strNameId = 'cw ' + $(this).attr('id').split(' ').pop();
+	  		$(document.getElementById(strNameId)).slideToggle('slow');
+		});
+
+		$('.show-comments-form').click(function() {
+	  		var strNameId = 'cf ' + $(this).attr('id').split(' ').pop();
+	  		$(document.getElementById(strNameId)).slideToggle('slow');
+		});
+	});
+</script>

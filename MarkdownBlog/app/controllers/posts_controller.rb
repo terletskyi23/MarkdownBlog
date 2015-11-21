@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def index
-  	@posts = Post.all
+  	@posts = Post.all.sort_by &:created_at
   end
 
   def new 
@@ -29,9 +29,9 @@ class PostsController < ApplicationController
     @post = Post.new(post_params.merge(user_id: current_user.id)) 
     
     if @post.save 
-      redirect_to '/posts' 
+      redirect_to root_path , notice: "Add new post!"
     else 
-      render 'new' 
+      render 'new' , alert: "ERROR: For some reason we can't save your post!"
     end 
   end
 

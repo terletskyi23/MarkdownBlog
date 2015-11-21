@@ -2,17 +2,20 @@ Rails.application.routes.draw do
   devise_for :users
 
   #VST
+  resources :posts, controller: :posts
   root 'posts#index'
-  get '/posts' => 'posts#index'
-  get '/posts/new' => 'posts#new'
-  post '/posts' => 'posts#create'
-  get '/post/:id' => 'posts#show', as: :post
-  get '/post/:id/edit' => 'posts#edit', as: :edit_post 
-  patch '/post/:id' => 'posts#update'
-  delete  '/post/:id' =>  'posts#destroy'
 
-  post '/comment' => 'comments#post_comment'
-  delete  '/comment/:id' =>  'comments#remove_comment'
+  #get '/posts' => 'posts#index'
+  #get '/posts/new' => 'posts#new'
+  #post '/posts' => 'posts#create'
+  #get '/post/:id' => 'posts#show', as: :post
+  #get '/post/:id/edit' => 'posts#edit', as: :edit_post 
+  #patch '/post/:id' => 'posts#update'
+  #delete  '/post/:id' =>  'posts#destroy'
+
+  resources :comments, controller: :comments, only: [:create, :destroy]
+  #post '/comment' => 'comments#create'
+  #delete  '/comment/:id' =>  'comments#destroy'
 
   get 'post/:id/likes', to: 'posts#post_like', as: :likes  
 

@@ -8,9 +8,5 @@ class CreatePosts < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_index :posts, [:user_id, :title], :unique => true
-
-    validates :user_id, numericality: true
-    validates :user_id, :title, :uniqueness => true
-    validates :user_id, :title, :presence => true
   end
 end
