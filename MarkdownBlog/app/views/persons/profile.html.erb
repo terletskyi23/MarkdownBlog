@@ -13,6 +13,7 @@
 		<%=link_to  'see them', :controller => "posts", :action => "index", :sw => true %>
 		<br>
 		<span>Comentars:</span> <%= current_user.comments.count %> 
+		<%=link_to  'see them', :controller => "comments", :action => "show_user_comments", :id => current_user.id %>
 		<br><br>
 		<%= link_to "Edit", edit_user_registration_path %>
 	</div>

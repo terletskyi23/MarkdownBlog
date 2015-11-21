@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   #VST
   resources :posts, controller: :posts
   root 'posts#index'
-
   #get '/posts' => 'posts#index'
   #get '/posts/new' => 'posts#new'
   #post '/posts' => 'posts#create'
@@ -13,9 +12,8 @@ Rails.application.routes.draw do
   #patch '/post/:id' => 'posts#update'
   #delete  '/post/:id' =>  'posts#destroy'
 
-  resources :comments, controller: :comments, only: [:create, :destroy]
-  #post '/comment' => 'comments#create'
-  #delete  '/comment/:id' =>  'comments#destroy'
+  resources :comments, controller: :comments, only: [:create, :destroy, :show_user_comments]
+  get '/show_user_comments/:id' => 'comments#show_user_comments'
 
   get 'post/:id/likes', to: 'posts#post_like', as: :likes  
 

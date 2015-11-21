@@ -1,4 +1,8 @@
 class CommentsController < ApplicationController
+  def show_user_comments
+    @comments = Comment.where(user_id: params[:id]).sort_by &:created_at
+  end
+
   def create
     @comment = Comment.new(comment_params.merge(user_id: current_user.id)) 
     
