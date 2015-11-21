@@ -60,12 +60,18 @@
 				</div>
 
 				<div class='comment-form'>
+					<%= form_tag( controller: "comments" , action: 'post_comment' ) do %>	<%= hidden_field_tag(:post_id, post.id) %>
+  						<%= text_area_tag(:body) %>
+  						<%= submit_tag("Add") %>
+					<% end %>
+
 
 				</div>
 
 				<% post.comments.each do |comment| %> 
 				<div class="comment block-shadow-2">
 	   				<p class="comment-text">
+	   					<%= link_to "Delete", comment, controller: "comments" , action: 'remove_comment', method: :delete, data: { confirm: "Are you sure?" } %>
 	   					<%= comment.body %>
 	   				</p> 
 	   				<hr />

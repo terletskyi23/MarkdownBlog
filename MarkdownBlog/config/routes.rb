@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   #VST
+  root 'posts#index'
   get '/posts' => 'posts#index'
   get '/posts/new' => 'posts#new'
   post '/posts' => 'posts#create'
@@ -9,9 +10,12 @@ Rails.application.routes.draw do
   get '/post/:id/edit' => 'posts#edit', as: :edit_post 
   patch '/post/:id' => 'posts#update'
   delete  '/post/:id' =>  'posts#destroy'
-  root 'posts#index'
 
-  get 'post/:id/likes', to: 'posts#post_like', as: :likes   
+  post '/comment' => 'comments#post_comment'
+  delete  '/comment/:id' =>  'comments#remove_comment'
+
+  get 'post/:id/likes', to: 'posts#post_like', as: :likes  
+
   get 'persons/profile', as: 'user_root'
 
   # The priority is based upon order of creation: first created -> highest priority.
