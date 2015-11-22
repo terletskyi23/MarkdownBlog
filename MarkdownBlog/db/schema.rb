@@ -61,13 +61,10 @@ ActiveRecord::Schema.define(version: 20151121155149) do
 
   create_table "myfollows", force: :cascade do |t|
     t.integer  "follower_id"
-    t.integer  "following_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "myfollows", ["follower_id"], name: "index_myfollows_on_follower_id", using: :btree
-  add_index "myfollows", ["following_id"], name: "index_myfollows_on_following_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",      default: ""

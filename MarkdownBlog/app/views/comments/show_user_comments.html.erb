@@ -16,7 +16,11 @@
 			<hr />
 	   		<div class="comment-info">
 		  		<span class="comment-creater">
-		  			<%= User.find_by_id(comment.user_id).login %>:
+		  			<% if comment.user_id == current_user.id %>
+			  			<%=link_to  "You", :controller => "persons", :action => "profile" %>
+			  		<% else %>
+			  			<%=link_to  User.find_by_id(comment.user_id).login, :controller => "persons", :action => "show", :id => User.find_by_id(comment.user_id) %> 
+		  			<% end %>
 		  		</span> 
 
 		  		<%if comment.created_at.to_date == Date.today %>

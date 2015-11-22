@@ -17,7 +17,11 @@ Rails.application.routes.draw do
 
   get 'post/:id/likes', to: 'posts#post_like', as: :likes  
 
+  
+
   get 'persons/profile', as: 'user_root'
+  get 'persons/:id' => 'persons#show'
+  get 'persons/:id/myfollow', to: 'persons#myfollow', as: :myfollow  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

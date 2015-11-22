@@ -35,12 +35,18 @@
 		  			<span class="post-time"> <%= @post.created_at.strftime(" %d %b. %Y") %></span> 
 		  		<% end %>
 
-		  		<span class="post-creater">by: <%= User.find_by_id(@post.user_id).login %> | &nbsp;
+		  		<span class="post-creater">by: 
+		  			<% if @post.user_id == current_user.id %>
+			  			<%=link_to  "You", :controller => "persons", :action => "profile" %>
+			  		<% else %> 
+		  				<%=link_to  User.find_by_id(@post.user_id).login, :controller => "persons", :action => "show", :id => @post.user_id %>
+		  			<% end %>
+		  			| &nbsp;
 		  		</span> 
 		  	</div>
 		</div> 
 
-		<div class="comments-wrapper" id = "cw <%=  @post.id%>">
+		<div class="comments-wrapper" id = "cw <%=  @post.id%>" style="display: block;">
 			<div class="comments-head"> 		
 				<%= image_tag("icons/add186.png", size: "30x30", :title => "+ New Comment", :alt => "Comment +", :class => 'show-comments-form', :id => "cbf "+@post.id.to_s) %> 
 					
@@ -60,7 +66,12 @@
 	   				</p> 
 	   				<hr />
 	   				<div class="comment-info">
-		  				<span class="comment-creater"><%= User.find_by_id(comment.user_id).login %>
+		  				<span class="comment-creater">
+		  				<% if comment.user_id == current_user.id %>
+			  					<%=link_to  "You", :controller => "persons", :action => "profile" %>
+			  			<% else %> 
+		  					<%=link_to  User.find_by_id(comment.user_id).login, :controller => "persons", :action => "show", :id => comment.user_id %>
+		  				<% end %>
 		  				</span> 
 					<%if comment.created_at.to_date == Date.today %>
 		  					<span class="comment-time"> today <%= comment.created_at.strftime(" %H:%M") %></span> 

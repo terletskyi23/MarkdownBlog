@@ -3,6 +3,32 @@ class User < ActiveRecord::Base
   has_many :posts 
   has_many :comments 
 
+  has_many :active_myfollows, class_name:  "Myfollow", foreign_key: "follower_id", dependent:   :destroy
+  has_many :following, through: :active_myfollows, source: :followed
+
+  has_many :passive_myfollows, class_name:  "Myfollow", foreign_key: "followed_id", dependent:   :destroy
+  has_many :followers, through: :passive_myfollows, source: :follower
+
+  def follow(other_user)
+    active_myfollows.create(followed_id: other_user.id)
+  end
+
+  def unfollow(other_user)
+    active_myfollows.find_by(followed_id: other_user.id).destroy
+  end
+
+  def toggle_myfollow(other_user)
+    if self.following?(other_user)
+       self.unfollow(other_user)
+    else
+       self.follow(other_user)
+    end
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
   acts_as_liker
 
   #VST: Autentication
