@@ -23,7 +23,7 @@
   </div>
   <div class="head-authentication small-5 columns">
     <% if user_signed_in? %>      
-        <span>Hi, <%=link_to  current_user.login, :controller => "persons", :action => "profile" %><b> |</b> </span>
+        <span>Hi, <%=link_to  current_user.login, :user_root%><b> |</b> </span>
           <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>
        <% else %>
         <%= link_to 'Log In', new_user_session_path %><span> <b>|</b> </span><%= link_to 'Sign Up', new_user_registration_path %>

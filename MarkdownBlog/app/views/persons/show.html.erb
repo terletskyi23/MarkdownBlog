@@ -38,7 +38,7 @@
 			<% end %>
 		<br>
 		<span>Post posted:</span> <%= @user.posts.count %> 
-		<%=link_to  'see them', :controller => "posts", :action => "index", :sw => true %>
+			<%=link_to  'see them', :controller => "posts", :action => "index", :sw => true %>
 		<br>
 		<span>Comentars:</span> <%= @user.comments.count %> 
 		<%=link_to  'see them', :controller => "comments", :action => "show_user_comments", :id => @user.id %>
