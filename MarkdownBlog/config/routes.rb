@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   #VST
   resources :posts, controller: :posts
   root 'posts#index'
+  get '/show_user_posts/:id' => 'posts#show_user_posts'
   #get '/posts' => 'posts#index'
   #get '/posts/new' => 'posts#new'
   #post '/posts' => 'posts#create'
@@ -16,8 +17,6 @@ Rails.application.routes.draw do
   get '/show_user_comments/:id' => 'comments#show_user_comments'
 
   get 'post/:id/likes', to: 'posts#post_like', as: :likes  
-
-  
 
   get 'persons/profile', as: 'user_root'
   get 'persons/:id' => 'persons#show'

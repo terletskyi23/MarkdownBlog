@@ -38,6 +38,10 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
   end
+
+  def show_user_posts
+    @posts = Post.where(user_id: params[:id]).sort_by &:created_at
+  end
 	
   def update
     @post = Post.find(params[:id])

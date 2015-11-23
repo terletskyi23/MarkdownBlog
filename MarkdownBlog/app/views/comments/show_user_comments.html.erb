@@ -1,6 +1,6 @@
 <div class="row">
     <div class="small-12 columns behind-page">
-
+    <h1> <%=link_to  User.find_by_id(@comments[0].user_id).login, :controller => "persons", :action => "show", :id => User.find_by_id(@comments[0].user_id) %> comments: </h1>
 	<% @comments.reverse_each do |comment| %> 
 		<h3 class=".swich">>><%=link_to  Post.find(comment.post_id).title, :controller => "posts", :action => "show", :id => Post.find(comment.post_id) %></h3>
 

@@ -20,28 +20,46 @@
 		<br><br>
 
 		<span>Followers:</span>
-			<% @user.followers.each do |follower_user| %> 
-				<% if follower_user.id == current_user.id %>
-			  		<%=link_to  "You", :controller => "persons", :action => "profile" %>
-			  	<% else %> 
-			  		<%=link_to  follower_user.login, :controller => "persons", :action => "show", :id => follower_user.id %> 
-			  	<% end %>
+			<% unless @user.followers.empty? %>
+				<% @user.followers.each do |follower_user| %> 
+					<% if follower_user.id == current_user.id %>
+				  		<%=link_to  "You", :controller => "persons", :action => "profile" %>
+				  	<% else %> 
+				  		<%=link_to  follower_user.login, :controller => "persons", :action => "show", :id => follower_user.id %> 
+				  	<% end %>
+				<% end %>
+			<% else %>
+				nobody
 			<% end %>
 		<br>
 		<span>Following:</span>
-			<% @user.following.each do |followed_user| %> 
-				<% if followed_user.id == current_user.id %>
-			  		<%=link_to  "You", :controller => "persons", :action => "profile" %>
-			  	<% else %> 
-			  		<%=link_to  followed_user.login, :controller => "persons", :action => "show", :id => followed_user.id %> 
-			  	<% end %>
+			<% unless @user.following.empty? %>
+				<% @user.following.each do |followed_user| %> 
+					<% if followed_user.id == current_user.id %>
+				  		<%=link_to  "You", :controller => "persons", :action => "profile" %>
+				  	<% else %> 
+				  		<%=link_to  followed_user.login, :controller => "persons", :action => "show", :id => followed_user.id %> 
+				  	<% end %>
+				<% end %>
+			<% else %>
+				nobody
 			<% end %>
 		<br>
-		<span>Post posted:</span> <%= @user.posts.count %> 
-			<%=link_to  'see them', :controller => "posts", :action => "index", :sw => true %>
+		<span>Post posted:</span> 
+			<% if @user.posts.count != 0 %>
+				<%= @user.posts.count %>
+				<%=link_to  'see them', :controller => "posts", :action => "show_user_posts", :id => @user.id %>
+			<% else %>
+				<%= @user.login %> post anything
+			<% end %>	
 		<br>
-		<span>Comentars:</span> <%= @user.comments.count %> 
-		<%=link_to  'see them', :controller => "comments", :action => "show_user_comments", :id => @user.id %>
+		<span>Comentars:</span>
+			<% if @user.comments.count != 0 %>
+				<%= @user.comments.count %> 
+				<%=link_to  'see them', :controller => "comments", :action => "show_user_comments", :id => @user.id %>
+			<% else %>
+				<%= @user.login %> post anything
+			<% end %>
 		<br><br>
 	</div>
 </div>

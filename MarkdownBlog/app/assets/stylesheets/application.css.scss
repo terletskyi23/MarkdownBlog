@@ -87,6 +87,15 @@ a:focus {
 	font-size: 1.4em;
 }
 
+.post-box {
+	background:$light-blue-color;
+	padding: 5px 5px 1px 20px;
+	border-bottom: 1px solid #fff;
+	p {
+		margin-left: 45px;
+	}
+}
+
 .behind-page{	margin-top: 25px;	}
 
 .content {

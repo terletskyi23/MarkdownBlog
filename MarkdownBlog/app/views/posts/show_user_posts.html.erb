@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="small-12 columns behind-page">
+    <h1 > <%=link_to  User.find_by_id(@posts[0].user_id).login, :controller => "persons", :action => "show", :id => User.find_by_id(@posts[0].user_id) %> posts:</h1>
+	<% @posts.reverse_each do |post| %> 
+		<div class="post-box">
+			<h3>
+				<%=link_to  post  do%>
+			  		<%= image_tag("icons/view24.png", size: "35x35", :title => "See Post", :alt => "View Post") %>
+			  	<% end %>
+				<%=link_to  post.title, :controller => "posts", :action => "show", :id => post.id %>
+			</h3>
+			<p class="right-box"> >> <%=link_to  User.find_by_id(post.user_id).login, :controller => "persons", :action => "show", :id => User.find_by_id(post.user_id) %> add in 
+				<%if post.created_at.to_date == Date.today %>
+				  		<span class="post-time"> today <%= post.created_at.strftime(" %H:%M") %></span> 
+				  		<% else %>
+				  		<span class="post-time"> <%= post.created_at.strftime(" %d %b. %Y") %>
+				  		</span> 
+			  		<% end %>
+			</p>
+		</div>
+	<% end %>
+
+	</div>
+</div>
