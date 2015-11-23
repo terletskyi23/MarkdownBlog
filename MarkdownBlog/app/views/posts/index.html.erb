@@ -67,7 +67,7 @@
 					<div class='comment-form' id = "cf <%=  post.id%>">
 						<%= form_tag( controller: 'comments' , action: 'create' ) do %>	<%= hidden_field_tag(:post_id, post.id) %>
 	  						<%= text_area_tag(:body) %>
-	  						<%= submit_tag('Add') %>
+	  						<%= submit_tag ('Add') %>
 						<% end %>
 					</div>
 				</div>

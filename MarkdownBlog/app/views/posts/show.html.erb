@@ -62,6 +62,12 @@
 			<% @post.comments.each do |comment| %> 
 				<div class="comment block-shadow-2">
 	   				<p class="comment-text">
+	   					<% if comment.user_id == current_user.id %>
+		   					<span>	
+		   						| <%= link_to "Delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
+		   						<br>
+		   					</span>
+	   					<% end %>
 	   					<%= comment.body %>
 	   				</p> 
 	   				<hr />
