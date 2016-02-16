@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user.toggle_like!(@post)
 
-    if @user.likes?(@post) 
+    if @user.likes?(@post)
       redirect_to :back, notice: "You liked this post!"
     else
       redirect_to :back, notice: "You unliked this post!"
@@ -14,25 +14,24 @@ class PostsController < ApplicationController
   end
 
   def index
-  	@posts = Post.all.sort_by &:created_at
+    @posts = Post.all.sort_by &:created_at
   end
 
-  def new 
-  	@post = Post.new 
+  def new
+    @post = Post.new 
   end
 
-  def edit 
-  	@post = Post.find(params[:id]) 
+  def edit
+    @post = Post.find(params[:id]) 
   end
 
-  def create 
-    @post = Post.new(post_params.merge(user_id: current_user.id)) 
-    
-    if @post.save 
+  def create
+    @post = Post.new(post_params.merge(user_id: current_user.id))
+    if @post.save
       redirect_to root_path , notice: "Add new post!"
-    else 
+    else
       render 'new' , alert: "ERROR: For some reason we can't save your post!"
-    end 
+    end
   end
 
   def show
@@ -42,7 +41,7 @@ class PostsController < ApplicationController
   def show_user_posts
     @posts = Post.where(user_id: params[:id]).sort_by &:created_at
   end
-	
+
   def update
     @post = Post.find(params[:id])
       if @post.update(post_params)
@@ -57,8 +56,8 @@ class PostsController < ApplicationController
     flash[:success] = "post was deleted"
     redirect_to '/posts'
   end
-	
-  private 
+
+  private
 
   def post_params 
     params.require(:post).permit(:title, :text) 

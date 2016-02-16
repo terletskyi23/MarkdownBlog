@@ -1,24 +1,24 @@
 <div class="row">
-  <div class="small-12 columns">
+	<div class="small-12 columns">
 		<h1>Posts#Edit:</h1>
 	</div>
 </div>
 <div class="row content">
-  <div class="small-6 columns">
-    <br>
-    <%= form_for(@post) do |f| %>
-		  <div class="field"> 
-		    <%= f.text_area :title %> 
-		    <%= f.text_area :text %> 
-	    </div> 
-		  <div class="actions"> 
-		    <%= f.submit "Update", class: "button info" %> 
-		  </div> 
+	<div class="small-6 columns">
+		<br>
+		<%= form_for(@post) do |f| %>
+			<div class="field">
+				<%= f.text_area :title %>
+				<%= f.text_area :text %>
+			</div>
+			<div class="actions"> 
+				<%= f.submit "Update", class: "button info" %>
+			</div>
 		<% end %>
 	</div>
 	<div class="small-6 columns f-box">
 		<h2 id="convert_post_title"></h2>
-			<p class="convert-text" id="convert_post_text"></p> 
+			<p class="convert-text" id="convert_post_text"></p>
 	</div>
 </div>
 
