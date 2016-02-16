@@ -8,25 +8,22 @@
 			<% end %>
 		<% end %>
 	</div>
-    <div class="small-11 columns behind-page">
+	<div class="small-11 columns behind-page">
 		<h1>
-
 			<%= @user.login %>
 		</h1>
 		<span>Name: </span> <%= @user.name %> 
 		<br>
-
 		<span>Joined on </span> <%= @user.created_at.strftime(" %d %b. %Y - %H:%M") %> 
 		<br><br>
-
 		<span>Followers:</span>
 			<% unless @user.followers.empty? %>
 				<% @user.followers.each do |follower_user| %> 
 					<% if follower_user.id == current_user.id %>
-				  		<%=link_to  "You", :controller => "persons", :action => "profile" %>
-				  	<% else %> 
-				  		<%=link_to  follower_user.login, :controller => "persons", :action => "show", :id => follower_user.id %> 
-				  	<% end %>
+						<%=link_to  "You", :controller => "persons", :action => "profile" %>
+					<% else %> 
+						<%=link_to  follower_user.login, :controller => "persons", :action => "show", :id => follower_user.id %> 
+					<% end %>
 				<% end %>
 			<% else %>
 				nobody
@@ -36,10 +33,10 @@
 			<% unless @user.following.empty? %>
 				<% @user.following.each do |followed_user| %> 
 					<% if followed_user.id == current_user.id %>
-				  		<%=link_to  "You", :controller => "persons", :action => "profile" %>
-				  	<% else %> 
-				  		<%=link_to  followed_user.login, :controller => "persons", :action => "show", :id => followed_user.id %> 
-				  	<% end %>
+						<%=link_to  "You", :controller => "persons", :action => "profile" %>
+					<% else %> 
+						<%=link_to  followed_user.login, :controller => "persons", :action => "show", :id => followed_user.id %> 
+					<% end %>
 				<% end %>
 			<% else %>
 				nobody

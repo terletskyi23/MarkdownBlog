@@ -1,37 +1,32 @@
 <div class="row">
-    <div class="small-12 columns behind-page">
-    <h1> <%=link_to  User.find_by_id(@comments[0].user_id).login, :controller => "persons", :action => "show", :id => User.find_by_id(@comments[0].user_id) %> comments: </h1>
-	<% @comments.reverse_each do |comment| %> 
-		<h3 class=".swich">>><%=link_to  Post.find(comment.post_id).title, :controller => "posts", :action => "show", :id => Post.find(comment.post_id) %></h3>
-
-		<div class="comment block-shadow-2">
-			<p class="comment-text ">
-
-			<span>	
-			    <%= link_to "Delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
-			   	<br>
-			</span>
-			<%= comment.body %>
-			</p>
-			<hr />
-	   		<div class="comment-info">
-		  		<span class="comment-creater">
-		  			<% if comment.user_id == current_user.id %>
-			  			<%=link_to  "You", :controller => "persons", :action => "profile" %>
-			  		<% else %>
-			  			<%=link_to  User.find_by_id(comment.user_id).login, :controller => "persons", :action => "show", :id => User.find_by_id(comment.user_id) %> 
-		  			<% end %>
-		  		</span> 
-
-		  		<%if comment.created_at.to_date == Date.today %>
-			  		<span class="comment-time"> today <%= comment.created_at.strftime(" %H:%M") %></span> 
-			  		<% else %>
-			  		<span class="comment-time"> <%= comment.created_at.strftime(" %d %b. %Y") %>
-			  		</span> 
-		  		<% end %>
-		  	</div>
-		</div>
-	<% end %>
-
+	<div class="small-12 columns behind-page">
+		<h1> <%=link_to  User.find_by_id(@comments[0].user_id).login, :controller => "persons", :action => "show", :id => User.find_by_id(@comments[0].user_id) %> comments: </h1>
+		<% @comments.reverse_each do |comment| %> 
+			<h3 class=".swich">>><%=link_to  Post.find(comment.post_id).title, :controller => "posts", :action => "show", :id => Post.find(comment.post_id) %></h3>
+			<div class="comment block-shadow-2">
+				<p class="comment-text ">
+					<span>
+						<%= link_to "Delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
+						<br>
+					</span>
+					<%= comment.body %>
+				</p>
+				<hr />
+				<div class="comment-info">
+					<span class="comment-creater">
+						<% if comment.user_id == current_user.id %>
+							<%=link_to  "You", :controller => "persons", :action => "profile" %>
+						<% else %>
+							<%=link_to  User.find_by_id(comment.user_id).login, :controller => "persons", :action => "show", :id => User.find_by_id(comment.user_id) %>
+						<% end %>
+					</span> 
+					<%if comment.created_at.to_date == Date.today %>
+						<span class="comment-time"> today <%= comment.created_at.strftime(" %H:%M")%></span>
+					<% else %>
+						<span class="comment-time"> <%= comment.created_at.strftime(" %d %b. %Y") %></span>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
 	</div>
 </div>
