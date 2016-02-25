@@ -4,6 +4,7 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'socialization' #only for likes
 gem "bower-rails", "~> 0.10.0"
+gem "redcarpet"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
