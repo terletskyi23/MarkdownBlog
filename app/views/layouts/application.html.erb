@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= content_for?(:title) ? yield(:title) : "MarkdownBlog" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="head row">
+      <div class="head-title small-4 columns"> <%= link_to controller.controller_name.titleize, url_for(params) %>
+      </div>
+      <div class="logo small-3 columns">
+        <%= link_to root_path do %>
+          <%= image_tag("markdown2.png", size: "112x100", :title => "Home", :alt => "logo") %>
+          <h3>Blog</h3>
+        <% end %>
+      </div>
+      <div class="head-authentication small-5 columns">
+        <% if user_signed_in? %>      
+          <span>Hi, <%=link_to  current_user.login, :user_root%><b> |</b> </span>
+            <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <%= link_to 'Log In', new_user_session_path %><span> <b>|</b> </span><%= link_to 'Sign Up', new_user_registration_path %>
+        <% end %>
+      </div>
+    </div>
+
+    <%= yield %>
+
+    <div class="footer row">
+
+      <div class="footer-message row">  
+        <div class="small-4 small-offset-6 columns">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        </div>  
+      </div>
+      <div>
+      <hr />
+        <!-- some footer -->
+      </div>
+    </div>
+  </body>
+</html>

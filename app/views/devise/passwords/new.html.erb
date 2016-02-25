@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="small-6 columns">
+		<h2>Forgot your password?</h2>
+
+		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+			<%= devise_error_messages! %>
+
+			<div class="field">
+				<p><%= f.label :name %><br />
+				<%= f.text_field :name,  autofocus: true %></p>
+			</div>
+
+			<div class="actions">
+				<%= f.submit "Send me reset password instructions", class: "button secondary"%>
+			</div>
+		<% end %>
+		<span class="swich">
+			<%= render "devise/shared/links" %>
+		</span>
+	</div>
+</div>

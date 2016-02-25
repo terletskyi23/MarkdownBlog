@@ -1,0 +1,62 @@
+<div class="row">
+	<div class="small-1 columns behind-page">
+		<%= link_to  myfollow_path(@user) do%> 
+			<% if current_user.following?(@user) %>
+				<%= image_tag("icons/user32.png", size: "50x50", :title => "unfollow", :alt => "unfollow", :class => "follow-icons") %>
+			<% else %>
+				<%= image_tag("icons/add40.png", size: "50x50", :title => "follow", :alt => "follow", :class => "follow-icons") %>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="small-11 columns behind-page">
+		<h1>
+			<%= @user.login %>
+		</h1>
+		<span>Name: </span> <%= @user.name %> 
+		<br>
+		<span>Joined on </span> <%= @user.created_at.strftime(" %d %b. %Y - %H:%M") %> 
+		<br><br>
+		<span>Followers:</span>
+			<% unless @user.followers.empty? %>
+				<% @user.followers.each do |follower_user| %> 
+					<% if follower_user.id == current_user.id %>
+						<%=link_to  "You", :controller => "persons", :action => "profile" %>
+					<% else %> 
+						<%=link_to  follower_user.login, :controller => "persons", :action => "show", :id => follower_user.id %> 
+					<% end %>
+				<% end %>
+			<% else %>
+				nobody
+			<% end %>
+		<br>
+		<span>Following:</span>
+			<% unless @user.following.empty? %>
+				<% @user.following.each do |followed_user| %> 
+					<% if followed_user.id == current_user.id %>
+						<%=link_to  "You", :controller => "persons", :action => "profile" %>
+					<% else %> 
+						<%=link_to  followed_user.login, :controller => "persons", :action => "show", :id => followed_user.id %> 
+					<% end %>
+				<% end %>
+			<% else %>
+				nobody
+			<% end %>
+		<br>
+		<span>Post posted:</span> 
+			<% if @user.posts.count != 0 %>
+				<%= @user.posts.count %>
+				<%=link_to  'see them', :controller => "posts", :action => "show_user_posts", :id => @user.id %>
+			<% else %>
+				<%= @user.login %> post anything
+			<% end %>	
+		<br>
+		<span>Comentars:</span>
+			<% if @user.comments.count != 0 %>
+				<%= @user.comments.count %> 
+				<%=link_to  'see them', :controller => "comments", :action => "show_user_comments", :id => @user.id %>
+			<% else %>
+				<%= @user.login %> post anything
+			<% end %>
+		<br><br>
+	</div>
+</div>

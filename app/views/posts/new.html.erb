@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="small-12 columns">
+		<h1>Posts#New:</h1>
+	</div>
+</div>
+<div class="row content">
+	<div class="small-6 columns">
+		<br>
+		<%= form_for(@post) do |f| %>
+			<div class="field">
+				<%= f.text_field :title %>
+				<%= f.text_area :text %>
+			</div>
+			<div class="actions">
+				<%= f.submit "Create", class: "button info" %>
+			</div>
+		<% end %>
+	</div>
+	<div class="small-6 columns f-box">
+		<h2 id="convert_post_title"></h2>
+		<div class="long-text">
+			<p class="convert-text" id="convert_post_text"></p>
+			</div>
+	</div>
+</div>
